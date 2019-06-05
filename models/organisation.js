@@ -2,18 +2,18 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const OrganisationSchema = new Schema({
-  Name: {
+  name: {
     type: String,
     required: true
   },
-  YearFounded: {
+  yearFounded: {
     type: Number,
     required: true
   },
-  Revenue: {
+  revenue: {
     type: Number,
     required: true
-  },
+  }
 });
 
 module.exports = mongoose.model("Organisations", OrganisationSchema);
