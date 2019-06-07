@@ -1,6 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const organisationController = require("./controllers/organisation-controller");
+const {
+  createOrganisation,
+  deleteOrganisation,
+  readOrganisation
+} = require("./controllers/organisation-controller");
 
 require("./database/db");
 
@@ -11,11 +15,12 @@ const port = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.route("/organisations").post(organisationController.createOrganisation);
+app.route("/organisations").post(createOrganisation);
 
 app
   .route("/organisations/:organisationid")
-  .delete(organisationController.deleteOrganisation);
+  .get(readOrganisation)
+  .delete(deleteOrganisation);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
