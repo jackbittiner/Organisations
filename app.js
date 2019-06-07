@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const {
   createOrganisation,
   deleteOrganisation,
-  readOrganisation
+  readOrganisation,
+  updateOrganisation
 } = require("./controllers/organisation-controller");
 
 require("./database/db");
@@ -20,6 +21,7 @@ app.route("/organisations").post(createOrganisation);
 app
   .route("/organisations/:organisationid")
   .get(readOrganisation)
+  .put(updateOrganisation)
   .delete(deleteOrganisation);
 
 app.listen(port, () => {
