@@ -4,7 +4,8 @@ const {
   createOrganisation,
   deleteOrganisation,
   readOrganisation,
-  updateOrganisation
+  updateOrganisation,
+  getAllOrganisations
 } = require("./controllers/organisation-controller");
 
 require("./database/db");
@@ -16,7 +17,10 @@ const port = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.route("/organisations").post(createOrganisation);
+app
+  .route("/organisations")
+  .get(getAllOrganisations)
+  .post(createOrganisation);
 
 app
   .route("/organisations/:organisationid")

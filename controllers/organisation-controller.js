@@ -61,9 +61,19 @@ const deleteOrganisation = (req, res) => {
   );
 };
 
+const getAllOrganisations = (req, res) => {
+  Organisation.find({}, (err, organisation) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.status(200).json(organisation);
+  });
+};
+
 module.exports = {
   createOrganisation: createOrganisation,
   readOrganisation: readOrganisation,
   updateOrganisation: updateOrganisation,
-  deleteOrganisation: deleteOrganisation
+  deleteOrganisation: deleteOrganisation,
+  getAllOrganisations: getAllOrganisations
 };
