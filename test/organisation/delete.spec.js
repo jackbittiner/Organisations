@@ -1,26 +1,21 @@
-var supertest = require("supertest");
-var should = require("should");
+const { addOrganisation } = require("../test-helpers");
+const supertest = require("supertest");
+const should = require("should");
 
-var server = supertest.agent("http://localhost:8080");
+const server = supertest.agent("http://localhost:8080");
 describe("deleteOrganisation", function() {
   it("should return a message with the deleted organisation", function(done) {
-    server
-      .post("/organisations")
-      .send({ name: "Financial Times", yearFounded: 1888, revenue: 1000000 })
-      .set("Accept", "application/json")
-      .expect(201)
-      .end(function(err, res) {
-        server
-          .delete(`/organisations/${res.body._id}`)
-          .set("Accept", "application/json")
-          .expect(200)
-          .end(function(err, res) {
-            res.body.message.should.equal(
-              "Financial Times successfully deleted"
-            );
-            done();
-          });
-      });
+    server;
+    addOrganisation().end(function(err, res) {
+      server
+        .delete(`/organisations/${res.body._id}`)
+        .set("Accept", "application/json")
+        .expect(200)
+        .end(function(err, res) {
+          res.body.message.should.equal("Financial Times successfully deleted");
+          done();
+        });
+    });
   });
 
   it("should 404 when can't find id", function(done) {
