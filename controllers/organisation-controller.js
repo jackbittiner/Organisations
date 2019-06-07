@@ -14,10 +14,13 @@ const deleteOrganisation = (req, res) => {
   Organisation.findByIdAndRemove(
     req.params.organisationid,
     (err, organisation) => {
-      if (err || !organisation) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      if (!organisation) {
         return res
           .status(404)
-          .send(err || "Couldn't find an organisation with that Id!");
+          .send("Couldn't find an organisation with that Id!");
       }
       res
         .status(200)

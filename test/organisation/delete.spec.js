@@ -25,7 +25,7 @@ describe("deleteOrganisation", function() {
 
   it("should 404 when can't find id", function(done) {
     server
-      .delete(`/organisations/fake900efake1255fake9id`)
+      .delete(`/organisations/5cfaa1bd09152353b4e1493b`)
       .set("Accept", "application/json")
       .expect(404)
       .end(function(err, res) {
