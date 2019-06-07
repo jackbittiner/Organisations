@@ -1,8 +1,7 @@
 const Organisation = require("../models/organisation");
 
 const createOrganisation = (req, res) => {
-  let newOrganisation = new Organisation(req.body);
-  newOrganisation.save((err, organisation) => {
+  Organisation.create(req.body, (err, organisation) => {
     if (err) {
       return res.status(500).send(err);
     }
