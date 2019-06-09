@@ -6,19 +6,34 @@ import styled from "styled-components";
 const App = () => {
   const [organisations, setOrganisations] = useState([]);
 
+  async function fetchData() {
+    const result = await axios.get("http://localhost:8080/organisations");
+    setOrganisations(result.data);
+  }
+
+  async function deleteOrganisation(organisationId) {
+    await axios.delete(`http://localhost:8080/organisations/${organisationId}`);
+    fetchData();
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const result = await axios.get("http://localhost:8080/organisations");
-      setOrganisations(result.data);
-    }
     fetchData();
   }, []);
 
   const listOfOrganisations = organisations.map(organisation => {
-    return <Organisation organisation={organisation} />;
+    return (
+      <Organisation
+        organisation={organisation}
+        deleteOrganisation={deleteOrganisation}
+      />
+    );
   });
 
-  return <Organisations>{listOfOrganisations}</Organisations>;
+  return (
+    <div>
+      <Organisations>{listOfOrganisations}</Organisations>
+    </div>
+  );
 };
 
 const Organisations = styled.div`

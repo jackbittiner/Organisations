@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const Organisation = ({ organisation: { name, yearFounded, revenue } }) => {
+const Organisation = ({
+  organisation: { name, yearFounded, revenue, _id },
+  deleteOrganisation
+}) => {
   return (
     <OrganisationBox>
       <h1>{name}</h1>
@@ -10,7 +13,7 @@ const Organisation = ({ organisation: { name, yearFounded, revenue } }) => {
       <button>
         <img src={require("./assets/edit.svg")} />
       </button>
-      <button>
+      <button onClick={() => deleteOrganisation(_id)}>
         <img src={require("./assets/delete.svg")} />
       </button>
     </OrganisationBox>
