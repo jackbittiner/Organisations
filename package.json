@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test-server": "set NODE_ENV=test&& node app.js",
-    "test": "mocha ./**/*.spec.js"
+    "test": "mocha ./test/**/*.spec.js"
   },
   "keywords": [],
   "author": "",
