@@ -22,39 +22,36 @@ const OrganisationForm = ({ handleSubmit, toggleShowModal }) => {
                 <input
                   type="text"
                   onChange={props.handleChange}
-                  onBlur={props.handleBlur}
                   value={props.values.companyName}
                   name="companyName"
                   placeholder="Company Name"
                 />
                 {props.errors.companyName && (
-                  <div id="feedback">{props.errors.companyName}</div>
+                  <div id="feedback">Required field</div>
                 )}
               </div>
               <div>
                 <input
                   type="text"
                   onChange={props.handleChange}
-                  onBlur={props.handleBlur}
                   value={props.values.yearFounded}
                   name="yearFounded"
                   placeholder="Year Founded"
                 />
                 {props.errors.yearFounded && (
-                  <div id="feedback">{props.errors.yearFounded}</div>
+                  <div id="feedback">Required field and must be number</div>
                 )}
               </div>
               <div>
                 <input
                   type="text"
                   onChange={props.handleChange}
-                  onBlur={props.handleBlur}
                   value={props.values.revenue}
                   name="revenue"
                   placeholder="Revenue"
                 />
                 {props.errors.revenue && (
-                  <div id="feedback">{props.errors.revenue}</div>
+                  <div id="feedback">Required field and must be number</div>
                 )}
               </div>
               <button type="submit">Submit</button>
@@ -68,9 +65,9 @@ const OrganisationForm = ({ handleSubmit, toggleShowModal }) => {
 
 const validator = () => {
   const validationObjectShape = {
-    companyName: yup.string().required("Required field"),
-    yearFounded: yup.number().required("Required field and must be number"),
-    revenue: yup.number().required("Required field and must be number")
+    companyName: yup.string().required(),
+    yearFounded: yup.number().required(),
+    revenue: yup.number().required()
   };
 
   const validationSchema = yup.object().shape(validationObjectShape);
@@ -101,5 +98,5 @@ const ModalContent = styled.div`
 `;
 
 const StyledForm = styled.form`
-  display: flex;
+  display: grid;
 `;
