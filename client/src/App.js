@@ -3,6 +3,7 @@ import axios from "axios";
 import Organisation from "./components/organisation";
 import NewOrganisationButton from "./components/new-organisation-button";
 import OrganisationForm from "./components/organisation-form";
+import Header from "./components/header";
 import styled from "styled-components";
 
 const App = () => {
@@ -61,7 +62,8 @@ const App = () => {
   });
 
   return (
-    <div>
+    <Page>
+      <Header />
       <NewOrganisationButton
         toggleButton={() =>
           toggleShowModal({
@@ -83,15 +85,18 @@ const App = () => {
           organisationId={modal.organisationId}
         />
       )}
-    </div>
+    </Page>
   );
 };
 
 const Organisations = styled.div`
-  margin: 24px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
+
+const Page = styled.div`
+  background-color: #eeece6;
 `;
 
 export default App;
