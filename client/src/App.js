@@ -33,7 +33,6 @@ const App = () => {
   }
 
   async function updateOrganisation(requestBody, organisationId) {
-    console.log(requestBody, organisationId);
     await axios.put(
       `http://localhost:8080/organisations/${organisationId}`,
       requestBody
