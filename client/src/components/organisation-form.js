@@ -1,21 +1,45 @@
 import React from "react";
 import styled from "styled-components";
 import { Formik } from "formik";
-import * as yup from "yup";
+import { createValidator, updateValidator } from "./validation-schemas";
 
-const OrganisationForm = ({ handleSubmit, toggleShowModal }) => {
+const OrganisationForm = ({
+  handleCreateSubmit,
+  toggleShowModal,
+  modalType,
+  updateOrganisation,
+  organisationId
+}) => {
+  const createRequestBody = ({ companyName, yearFounded, revenue }) => {
+    const requestBody = {};
+    if (companyName !== "") requestBody.name = companyName;
+    if (yearFounded !== "") requestBody.yearFounded = yearFounded;
+    if (revenue !== "") requestBody.revenue = revenue;
+    return requestBody;
+  };
+
   return (
     <Modal>
       <ModalContent>
-        <h1>Add Organisation Details</h1>
+        <h1>
+          {modalType === "NewOrganisation"
+            ? "Add Organisation Details"
+            : "Update Organisation Details"}
+        </h1>
         <Formik
           initialValues={{ companyName: "", yearFounded: "", revenue: "" }}
           onSubmit={(values, actions) => {
-            handleSubmit(values);
+            modalType === "NewOrganisation" && handleCreateSubmit(values);
+            modalType === "UpdateOrganisation" &&
+              updateOrganisation(createRequestBody(values), organisationId);
             toggleShowModal();
             actions.setSubmitting(false);
           }}
-          validationSchema={validator()}
+          validationSchema={
+            modalType === "NewOrganisation"
+              ? createValidator()
+              : updateValidator()
+          }
           render={props => (
             <StyledForm onSubmit={props.handleSubmit}>
               <div>
@@ -26,9 +50,6 @@ const OrganisationForm = ({ handleSubmit, toggleShowModal }) => {
                   name="companyName"
                   placeholder="Company Name"
                 />
-                {props.errors.companyName && (
-                  <div id="feedback">Required field</div>
-                )}
               </div>
               <div>
                 <input
@@ -38,9 +59,6 @@ const OrganisationForm = ({ handleSubmit, toggleShowModal }) => {
                   name="yearFounded"
                   placeholder="Year Founded"
                 />
-                {props.errors.yearFounded && (
-                  <div id="feedback">Required field and must be number</div>
-                )}
               </div>
               <div>
                 <input
@@ -50,9 +68,6 @@ const OrganisationForm = ({ handleSubmit, toggleShowModal }) => {
                   name="revenue"
                   placeholder="Revenue"
                 />
-                {props.errors.revenue && (
-                  <div id="feedback">Required field and must be number</div>
-                )}
               </div>
               <button type="submit">Submit</button>
             </StyledForm>
@@ -61,18 +76,6 @@ const OrganisationForm = ({ handleSubmit, toggleShowModal }) => {
       </ModalContent>
     </Modal>
   );
-};
-
-const validator = () => {
-  const validationObjectShape = {
-    companyName: yup.string().required(),
-    yearFounded: yup.number().required(),
-    revenue: yup.number().required()
-  };
-
-  const validationSchema = yup.object().shape(validationObjectShape);
-
-  return validationSchema;
 };
 
 export default OrganisationForm;

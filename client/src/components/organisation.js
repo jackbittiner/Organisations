@@ -3,14 +3,15 @@ import styled from "styled-components";
 
 const Organisation = ({
   organisation: { name, yearFounded, revenue, _id },
-  deleteOrganisation
+  deleteOrganisation,
+  handleUpdateButtonClick
 }) => {
   return (
     <OrganisationBox>
       <h1>{name}</h1>
       <p>Founded: {yearFounded}</p>
       <p>Revenue: {revenue}</p>
-      <button>
+      <button onClick={handleUpdateButtonClick}>
         <img src={require("./assets/edit.svg")} />
       </button>
       <button onClick={() => deleteOrganisation(_id)}>

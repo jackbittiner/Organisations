@@ -7,7 +7,11 @@ import styled from "styled-components";
 
 const App = () => {
   const [organisations, setOrganisations] = useState([]);
-  const [modal, toggleShowModal] = useState({ show: false, type: null });
+  const [modal, toggleShowModal] = useState({
+    show: false,
+    type: null,
+    organisationId: null
+  });
 
   async function fetchData() {
     const result = await axios.get("http://localhost:8080/organisations");
@@ -28,6 +32,15 @@ const App = () => {
     fetchData();
   }
 
+  async function updateOrganisation(requestBody, organisationId) {
+    console.log(requestBody, organisationId);
+    await axios.put(
+      `http://localhost:8080/organisations/${organisationId}`,
+      requestBody
+    );
+    fetchData();
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -37,6 +50,13 @@ const App = () => {
       <Organisation
         organisation={organisation}
         deleteOrganisation={deleteOrganisation}
+        handleUpdateButtonClick={() =>
+          toggleShowModal({
+            show: true,
+            type: "UpdateOrganisation",
+            organisationId: organisation._id
+          })
+        }
       />
     );
   });
@@ -45,14 +65,23 @@ const App = () => {
     <div>
       <NewOrganisationButton
         toggleButton={() =>
-          toggleShowModal({ show: true, type: "NewOrganisation" })
+          toggleShowModal({
+            show: true,
+            type: "NewOrganisation",
+            organisationId: null
+          })
         }
       />
       <Organisations>{listOfOrganisations}</Organisations>
       {modal.show && (
         <OrganisationForm
-          handleSubmit={createOrganisation}
-          toggleShowModal={() => toggleShowModal({ show: false, type: null })}
+          handleCreateSubmit={createOrganisation}
+          toggleShowModal={() =>
+            toggleShowModal({ show: false, type: null, organisationId: null })
+          }
+          modalType={modal.type}
+          updateOrganisation={updateOrganisation}
+          organisationId={modal.organisationId}
         />
       )}
     </div>
