@@ -16,11 +16,14 @@ The rest is entirely up to you. :)
 
 #### Install the App
 
+Make sure you have node installed. (I'm using version 10.15.2)
+Make sure you have NPM installed. (I'm using version 6.4.1)
+
 ```
 // clone the repository
-git clone .................
+git clone git@github.com:jackbittiner/FT-Tech-Test.git
 // enter the repository
-cd ..............
+cd Ft-Tech-Test
 // install the dependencies
 npm i
 ```
@@ -36,13 +39,14 @@ npm test
 
 You should see the following:
 
-![tests](./readme-assets/tests-passing.png)
+![tests](./readme-assets/tests-passing.PNG)
 
 All Green! Nice! (...hopefully)
 
 #### Run the App
 
 ```
+// make sure you've stopped running the test server
 // enter the client
 cd client
 // install dependencies
