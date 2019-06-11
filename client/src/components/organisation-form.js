@@ -22,7 +22,7 @@ const OrganisationForm = ({
     <Modal>
       <ModalContent>
         <CloseButton onClick={toggleShowModal}>
-          <img src={require("./assets/close.png")} />
+          <img src={require("./assets/close.png")} alt="close" />
         </CloseButton>
         <h1>
           {modalType === "NewOrganisation"

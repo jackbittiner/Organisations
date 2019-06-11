@@ -17,10 +17,10 @@ const Organisation = ({
           <Value>Revenue:</Value> {revenue}
         </p>
         <button onClick={handleUpdateButtonClick}>
-          <img src={require("./assets/edit.svg")} />
+          <img src={require("./assets/edit.svg")} alt="edit" />
         </button>
         <button onClick={() => deleteOrganisation(_id)}>
-          <img src={require("./assets/delete.svg")} />
+          <img src={require("./assets/delete.svg")} alt="delete" />
         </button>
       </Content>
     </OrganisationBox>
