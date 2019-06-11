@@ -21,6 +21,9 @@ const OrganisationForm = ({
   return (
     <Modal>
       <ModalContent>
+        <CloseButton onClick={toggleShowModal}>
+          <img src={require("./assets/close.png")} />
+        </CloseButton>
         <h1>
           {modalType === "NewOrganisation"
             ? "Add Organisation Details"
@@ -102,4 +105,8 @@ const ModalContent = styled.div`
 
 const StyledForm = styled.form`
   display: grid;
+`;
+
+const CloseButton = styled.button`
+  float: right;
 `;
