@@ -22,9 +22,9 @@ Make sure you have NPM installed. (I'm using version 6.4.1)
 
 ```
 // clone the repository
-git clone git@github.com:jackbittiner/FT-Tech-Test.git
+git clone git@github.com:jackbittiner/Organisations.git
 // enter the repository
-cd Ft-Tech-Test
+cd Organisations
 // install the dependencies
 npm i
 ```
