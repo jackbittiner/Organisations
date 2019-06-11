@@ -52,6 +52,7 @@ All Green (...hopefully)! Nice!
 cd client
 // install dependencies
 npm i
+// If you get an error at this point delete the package-lock.json in the client and re-run npm i
 // run the app
 npm start
 // A browser should load the page automatically but if not navigate to http://localhost:3000/
