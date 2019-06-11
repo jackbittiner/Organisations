@@ -87,18 +87,19 @@ I was unsure of what this meant. So I interpreted it as "Literally do whatever y
 
 - It works.
 - It's pretty simple.
-- Separate databases for tests.
+- Separate database for tests.
 
 ## The Bad
 
 - The front-end design (I'm not a designer and left to my own devices my website always look old and clunky)
 - The front end wasn't TDD'd. The reason I didn't TDD the front-end was because I considered it more of a spike. It wasn't required and I had certain time constraints.
+- Using create-react-app. I did this for speed but much of the stuff is unnecessary.
 
 ## What would I do with more time?
 
 - Create more endpoints for the API. Perhaps a filter by date/revenue.
 - Create snapshot tests for the front-end to make sure no future changes (that admittedly won't occur) break the journeys
-- Some data visualisation. The data is fairly simple, but I would've liked to have shown something to show my eagerness to your project.
+- Some data visualisation. The data is fairly simple, but I would've liked to have shown something to show my eagerness to your project/stack.
 
 ## Thank you
 
